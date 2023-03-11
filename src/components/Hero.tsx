@@ -25,11 +25,11 @@ export function Hero() {
       <p className="mx-auto mt-6 max-w-2xl text-lg tracking-tight text-slate-700">
         {SITE_DESC}
       </p>
-      <div className="mt-10 flex justify-center gap-x-6">
+      {/* <div className="mt-10 flex justify-center gap-x-6">
         <Button href="https://github.com/futantan/OpenGpt" target="_blank">
           Star on GitHub
         </Button>
-      </div>
+      </div> */}
     </Container>
   )
 }
