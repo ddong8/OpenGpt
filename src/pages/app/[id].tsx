@@ -164,9 +164,9 @@ const OpenGptApp = (
                         <div className="flex w-full flex-col items-center justify-center space-y-8">
                           <div
                             className="w-full cursor-copy rounded-xl border bg-white p-4 shadow-md transition hover:bg-gray-100"
-                            onClick=${() => {
+                            onClick={() => {
                               navigator.clipboard.writeText(
-                                parseMarkdown(generatedResults)
+                                ${parseMarkdown(generatedResults)}
                               )
                               toast('Result copied to clipboard', {
                                 icon: '✂️',
