@@ -149,6 +149,13 @@ const OpenGptApp = (
             </button>
 
             <div className="my-10 w-full space-y-10">
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: parseMarkdown(generatedResults),
+                }}
+              >
+                {' '}
+              </div>
               {parseMarkdown(generatedResults) && (
                 <div className="flex flex-col gap-8">
                   <h2
