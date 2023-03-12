@@ -153,18 +153,18 @@ const OpenGptApp = (
                 dangerouslySetInnerHTML={{
                   __html:
                     generatedResults &&
-                    String(
+                    `(
                       <div className="flex flex-col gap-8">
                         <h2
                           className="mx-auto text-3xl font-bold text-slate-900 sm:text-4xl"
-                          ref={resultRef}
+                          ref=${resultRef}
                         >
                           结果
                         </h2>
                         <div className="flex w-full flex-col items-center justify-center space-y-8">
                           <div
                             className="w-full cursor-copy rounded-xl border bg-white p-4 shadow-md transition hover:bg-gray-100"
-                            onClick={() => {
+                            onClick=${() => {
                               navigator.clipboard.writeText(
                                 parseMarkdown(generatedResults)
                               )
@@ -174,12 +174,12 @@ const OpenGptApp = (
                             }}
                           >
                             <p className="whitespace-pre-line text-left">
-                              {parseMarkdown(generatedResults)}
+                              ${parseMarkdown(generatedResults)}
                             </p>
                           </div>
                         </div>
                       </div>
-                    ),
+                    )`,
                 }}
               ></div>
             </div>
