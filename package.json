@@ -41,6 +41,7 @@
     "superjson": "1.9.1",
     "tailwind-merge": "^1.10.0",
     "marked": "^4.2.12",
+    "isomorphic-dompurify": "^1.1.0",
     "zod": "^3.20.6"
   },
   "devDependencies": {
