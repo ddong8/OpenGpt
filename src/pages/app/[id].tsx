@@ -9,8 +9,8 @@ import type { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import Head from 'next/head'
 import { useRef, useState } from 'react'
 import { toast } from 'react-hot-toast'
-import { marked } from 'marked';
-import DOMPurify from 'isomorphic-dompurify';
+import { marked } from 'marked'
+import DOMPurify from 'isomorphic-dompurify'
 
 type AppConfig = {
   id: string
@@ -45,38 +45,38 @@ export const getServerSideProps: GetServerSideProps<
 }
 
 const parseMarkdown = (text, streaming = false) => {
-  text = text.trim();
-  let cursorAdded = false;
+  text = text.trim()
+  let cursorAdded = false
   // workaround for incomplete code, closing the block if it's not closed
   // First, count occurrences of "```" in the text
-  const codeBlockCount = (text.match(/```/g) || []).length;
+  const codeBlockCount = (text.match(/```/g) || []).length
   // If the count is odd and the text doesn't end with "```", add a closing block
   if (codeBlockCount % 2 === 1 && !text.endsWith('```')) {
     if (streaming) {
-      text += '█\n```';
-      cursorAdded = true;
+      text += '█\n```'
+      cursorAdded = true
     } else {
-      text += '\n```';
+      text += '\n```'
     }
   }
   if (codeBlockCount) {
     // make sure the last "```" is on a newline
-    text = text.replace(/```$/, '\n```');
+    text = text.replace(/```$/, '\n```')
   }
   if (streaming && !cursorAdded) {
-    text += '█';
+    text += '█'
   }
 
   // convert to markdown
-  let parsed = marked.parse(text);
+  let parsed = marked.parse(text)
   // format Bing's source links more nicely
   // 1. replace "[^1^]" with "[1]" (during progress streams)
-  parsed = parsed.replace(/\[\^(\d+)\^]/g, '<strong>[$1]</strong>');
+  parsed = parsed.replace(/\[\^(\d+)\^]/g, '<strong>[$1]</strong>')
   // 2. replace "^1^" with "[1]" (after the progress stream is done)
-  parsed = parsed.replace(/\^(\d+)\^/g, '<strong>[$1]</strong>');
+  parsed = parsed.replace(/\^(\d+)\^/g, '<strong>[$1]</strong>')
 
-  return DOMPurify.sanitize(parsed);
-};
+  return DOMPurify.sanitize(parsed)
+}
 
 const OpenGptApp = (
   props: InferGetServerSidePropsType<typeof getServerSideProps>
@@ -161,7 +161,9 @@ const OpenGptApp = (
                     <div
                       className="w-full cursor-copy rounded-xl border bg-white p-4 shadow-md transition hover:bg-gray-100"
                       onClick={() => {
-                        navigator.clipboard.writeText(parseMarkdown(generatedResults))
+                        navigator.clipboard.writeText(
+                          parseMarkdown(generatedResults)
+                        )
                         toast('Result copied to clipboard', {
                           icon: '✂️',
                         })
