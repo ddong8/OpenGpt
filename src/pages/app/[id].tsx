@@ -149,11 +149,36 @@ const OpenGptApp = (
             </button>
 
             <div className="my-10 w-full space-y-10">
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: generatedResults && parseMarkdown(generatedResults),
-                }}
-              ></div>
+              {generatedResults && (
+                <div className="flex flex-col gap-8">
+                  <h2
+                    className="mx-auto text-3xl font-bold text-slate-900 sm:text-4xl"
+                    ref={resultRef}
+                  >
+                    结果
+                  </h2>
+                  <div className="flex w-full flex-col items-center justify-center space-y-8">
+                    <div
+                      className="w-full cursor-copy rounded-xl border bg-white p-4 shadow-md transition hover:bg-gray-100"
+                      onClick={() => {
+                        navigator.clipboard.writeText(generatedResults)
+                        toast('Result copied to clipboard', {
+                          icon: '✂️',
+                        })
+                      }}
+                    >
+                      <p
+                        className="whitespace-pre-line text-left"
+                        dangerouslySetInnerHTML={{
+                          __html: parseMarkdown(generatedResults),
+                        }}
+                      >
+                        {generatedResults}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </main>
