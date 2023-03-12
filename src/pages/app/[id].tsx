@@ -167,13 +167,12 @@ const OpenGptApp = (
                         })
                       }}
                     >
-                      <p
-                        className="whitespace-pre-line text-left"
-                        dangerouslySetInnerHTML={{
-                          __html: parseMarkdown(generatedResults),
-                        }}
-                      >
-                        {generatedResults}
+                      <p className="whitespace-pre-line text-left">
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: parseMarkdown(generatedResults),
+                          }}
+                        ></div>
                       </p>
                     </div>
                   </div>
